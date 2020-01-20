@@ -13,11 +13,16 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
+	let disposable = vscode.commands.registerTextEditorCommand('extension.cleverEnter', (textEditor, edit) => {
+		const {
+			selection: { active, end }, 
+			document: { lineAt },
+		} = textEditor;
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World!');
+		const { text } = lineAt(active);
+		console.log('文本：', text);
+
+		edit.insert(end, '() {}');
 	});
 
 	context.subscriptions.push(disposable);

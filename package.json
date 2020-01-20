@@ -10,16 +10,23 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.cleverEnter"
 	],
+	"publisher": "zerrol",
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "extension.cleverEnter",
+				"title": "clever enter"
 			}
-		]
+		],
+		"keybindings": [{
+			"command": "extension.cleverEnter",
+			"key": "ctrl+shift+enter",
+			"mac": "cmd+shift+enter",
+			"when": "editorTextFocus"
+	}]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
